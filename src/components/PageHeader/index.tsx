@@ -3,21 +3,21 @@ import { Breadcrumb, Box, Typography } from '@alifd/next';
 import styles from './index.module.scss';
 
 export interface PageHeaderProps {
-  breadcrumbs?: { name: string | React.ReactElement; path?: string }[];
+  breadcrumbs?: { name: string; path?: string }[];
   title?: string;
   description?: string;
 }
 
 const PageHeader: SFC<PageHeaderProps> = (props) => {
-  const { breadcrumbs, title, description } = props;
+  const { breadcrumbs, title, description, ...others } = props;
   return (
-    <Box spacing={8} className={styles.PageHeader}>
+    <Box spacing={8} className={styles.PageHeader} {...others}>
       {
         breadcrumbs && breadcrumbs.length > 0 ? (
           <Breadcrumb className={styles.Breadcrumbs} separator=" / ">
             {
               breadcrumbs.map((item) => (
-                <Breadcrumb.Item key={item.path} link={item.path}>{item.name}</Breadcrumb.Item>
+                <Breadcrumb.Item link={item.path}>{item.name}</Breadcrumb.Item>
               ))
             }
           </Breadcrumb>

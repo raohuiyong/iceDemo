@@ -1,76 +1,53 @@
-import React, { useState, useCallback, useEffect, Suspense } from 'react';
+import React from 'react';
+import { IntlProvider, addLocaleData } from 'react-intl';
 import { ConfigProvider } from '@alifd/next';
-import intl from 'react-intl-universal';
-import PageLoading from '@/components/PageLoading';
-import locales, { getDefaultLanguage, getDefaultLocale } from '@/locales';
-import { getDevice } from '@/utils';
 
-(function() {
-  const throttle = function(type: string, name: string, obj: Window = window) {
-    let running = false;
+// 引入 react-intl 多语言包
+import en from 'react-intl/locale-data/en';
+import zh from 'react-intl/locale-data/zh';
 
-    const func = () => {
-      if (running) {
-        return;
-      }
+// 引入基础组件的语言包
+import enUS from '@alifd/next/lib/locale/en-us';
+import zhCN from '@alifd/next/lib/locale/zh-cn';
 
-      running = true;
-      requestAnimationFrame(() => {
-        obj.dispatchEvent(new CustomEvent(name));
-        running = false;
-      });
-    };
+// 引入 locale 配置文件
+import localeEnUS from '@/locales/en-US';
+import localeZhCN from '@/locales/zh-CN';
 
-    obj.addEventListener(type, func);
-  };
+// 设置语言包
+addLocaleData([...en, ...zh]);
 
-  throttle('resize', 'optimizedResize');
-})();
+const localeInfo = {
+  'zh-CN': {
+    nextLocale: zhCN,
+    appLocale: 'zh',
+    appMessages: localeZhCN,
+  },
+  'en-US': {
+    nextLocale: enUS,
+    appLocale: 'en',
+    appMessages: localeEnUS,
+  },
+};
 
 interface Props {
+  locale: string;
   children: React.ReactElement;
 }
-function LocaleProvider(props: Props) {
-  console.log('111111');
-  const { children } = props;
-  const languages = getDefaultLanguage();
-  const [device, setDevice] = useState<'phone' | 'tablet' | 'desktop'>(
-    getDevice(NaN)
-  );
-  const onResize = useCallback((e: any) => {
-    setDevice(getDevice(e && e.target && e.target.innerWidth));
-  }, []);
-  useEffect(() => {
-    window.addEventListener('optimizedResize', onResize);
-    return () => {
-      window.removeEventListener('optimizedResize', onResize);
-    };
-  }, []);
-  intl.init({
-    currentLocale: languages,
-    locales
-  });
 
-  function fallbackUI(props) {
-    const { error, errorInfo } = props;
-    return <h1 style={{ color: 'red' }}>Error: {error.toString()}</h1>;
-  }
-  function afterCatch(error, errorInfo) {
-    console.log('错误捕获');
-    console.error(error);
-    console.error(errorInfo);
-  }
+function LocaleProvider(props: Props) {
+  const { locale, children } = props;
+
+  const myLocale = localeInfo[locale]
+    ? localeInfo[locale]
+    : localeInfo['en-US'];
+
   return (
-    <ConfigProvider locale={getDefaultLocale(languages)} device={device}>
-      <ConfigProvider.ErrorBoundary
-        fallbackUI={fallbackUI}
-        afterCatch={afterCatch}
-      >
-        <Suspense fallback={<PageLoading />}>
-          {React.Children.only(children)}
-        </Suspense>
-      </ConfigProvider.ErrorBoundary>
-    </ConfigProvider>
+    <IntlProvider locale={myLocale.appLocale} messages={myLocale.appMessages}>
+      <ConfigProvider locale={myLocale.nextLocale}>
+        {React.Children.only(children)}
+      </ConfigProvider>
+    </IntlProvider>
   );
 }
 

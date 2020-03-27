@@ -1,5 +1,5 @@
 
-## Fusion Design Pro
+## Fusion Design Pro - TS
 
 > 使用 TypeScript，包含大量 UI 区块，比如图表、表单等。
 
@@ -11,12 +11,6 @@ $ npm install
 
 # 启动服务
 $ npm start  # visit http://localhost:3333
-
-# 项目发布
-$ npm run build
-
-# 接收的不同参数值需要修改build.plugin.js中compileOptions常量进行条件编译的控制
---local_set=global 设置为国外版，接收的参数值(global)最终生成的目录名称(dist_global)，可以用于生产环境或者开发环境（不设置就是国内版）
 ```
 
 [More docs](https://ice.work/docs/guide/about).

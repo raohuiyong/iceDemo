@@ -1,5 +1,5 @@
 import React from 'react';
-import { Icon, Card } from '@alifd/next';
+import { Card } from '@alifd/next';
 import { Chart, Geom } from 'bizcharts';
 import mock from './mock.js';
 
@@ -37,7 +37,7 @@ const FusionCardAreaChart: React.FunctionComponent<FusionCardAreaChartProps> = (
       {
         title ? (
           <React.Fragment>
-            <Card.Header title={<span className={styles.title}>{title}</span>}></Card.Header>
+            <Card.Header title={<span className={styles.title}>{title}</span>} />
             <Card.Divider />
           </React.Fragment>
         ) : null

@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { Radio, Card, Box } from '@alifd/next';
-import { Chart, Geom, Coord, Axis, Legend, Guide } from 'bizcharts';
+import React from 'react';
+import { Card } from '@alifd/next';
+import { Chart, Geom, Coord, Axis, Legend } from 'bizcharts';
 
 import styles from './index.module.scss';
 
@@ -62,7 +62,7 @@ const FusionCardLineChart: React.FunctionComponent<FusionCardLineChartProps> = (
   const { title, chartData, chartHeight } = cardConfig;
   return (
     <Card free>
-      <Card.Header title={<span className={styles.title}>{title}</span>}></Card.Header>
+      <Card.Header title={<span className={styles.title}>{title}</span>} />
       <Card.Divider />
       <Card.Content>
       

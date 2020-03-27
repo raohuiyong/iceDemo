@@ -1,5 +1,5 @@
 import React from 'react';
-import { Icon, Card } from '@alifd/next';
+import { Card } from '@alifd/next';
 import { Chart, Geom } from 'bizcharts';
 import mock from './mock.js';
 
@@ -45,7 +45,7 @@ const FusionCardBarChart: React.FunctionComponent<FusionCardBarChartProps> = (pr
       {
         title ? (
           <>
-            <Card.Header title={title}></Card.Header>
+            <Card.Header title={title} />
             <Card.Divider />
           </>
         ) : null

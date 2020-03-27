@@ -6,7 +6,7 @@ export default function Footer() {
     <p className={styles.footer}>
       <span className={styles.logo}>Alibaba Fusion</span>
       <br />
-      <span className={styles.copyright}>@ 2019 Alibaba Piecework 版权所有</span>
+      <span className={styles.copyright}>© 2019-现在 Alibaba Fusion & ICE</span>
     </p>
   );
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { ResponsiveGrid } from '@alifd/next';
-// import PageHeader from '@/components/PageHeader';
+import PageHeader from '@/components/PageHeader';
 import NotFound from './components/NotFound';
 
 const { Cell } = ResponsiveGrid;
@@ -8,7 +8,7 @@ const { Cell } = ResponsiveGrid;
 const FeedbackNotFound = () => {
   return (
     <ResponsiveGrid gap={20}>
-      {/* <Cell colSpan={12}>
+      <Cell colSpan={12}>
         <PageHeader
           title="404页面"
           breadcrumbs={[
@@ -18,7 +18,7 @@ const FeedbackNotFound = () => {
           ]}
           description="404页面描述404页面描述404页面描述404页面描述404页面描述404页面描述404页面描述"
         />
-      </Cell> */}
+      </Cell>
 
       <Cell colSpan={12}>
         <NotFound />

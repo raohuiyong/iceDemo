@@ -1,13 +1,4 @@
 {
-  "publicPath": "/",
-  "hash": "contenthash",
-  "outputAssetsPath": {
-    "js": "static/js",
-    "css": "static/css"
-  },
-  "devServer": {
-    "historyApiFallback": true
-  },
   "plugins": [
     [
       "build-plugin-fusion",
@@ -18,20 +9,10 @@
     [
       "build-plugin-moment-locales",
       {
-        "locales": ["zh-cn", "zh-tw"]
+        "locales": [
+          "zh-cn"
+        ]
       }
-    ],
-    [
-      "build-plugin-antd",
-      {
-        "themeConfig": {
-          "primary-color": "#209BFA"
-        },
-        "importOptions": {
-          "libraryDirectory": "lib"
-        }
-      }
-    ],
-    "./build.plugin.js"
+    ]
   ]
 }

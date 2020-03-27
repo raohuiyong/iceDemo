@@ -1,7 +1,5 @@
 import React from 'react';
-import { store as appStore } from 'ice';
 import { ResponsiveGrid } from '@alifd/next';
-import intl from 'react-intl-universal';
 import PageHeader from '@/components/PageHeader';
 import FusionCardBarChart from './components/FusionCardBarChart';
 import FusionCardAreaChart from './components/FusionCardAreaChart';
@@ -14,11 +12,8 @@ import FusionCardGroupBarChart from './components/FusionCardGroupBarChart';
 const { Cell } = ResponsiveGrid;
 
 const Analysis = () => {
-  const [counterState] = appStore.useModel('app');
-  console.log(counterState);
   return (
     <ResponsiveGrid gap={20}>
-      <div>{intl.get('name')}</div>
       <Cell colSpan={12}>
         <PageHeader
           title="分析页面"

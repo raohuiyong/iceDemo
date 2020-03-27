@@ -1,41 +1,20 @@
 import * as React from 'react';
-import { createApp, IAppConfig } from 'ice';
-import PageLoading from '@/components/PageLoading';
+import { createApp } from 'ice';
 import LocaleProvider from '@/components/LocaleProvider';
+import { getLocale } from '@/utils/locale';
 
-/* IFTRUE_isChina */
-console.log(process.env.NODE_ENV);
-/* FITRUE_isChina */
+const locale = getLocale();
 
-const appConfig: IAppConfig = {
+const appConfig = {
   app: {
     rootId: 'ice-container',
-    addProvider: ({ children }) => <LocaleProvider>{children}</LocaleProvider>
+    addProvider: ({ children }) => (
+      <LocaleProvider locale={locale}>{children}</LocaleProvider>
+    ),
   },
   router: {
     type: 'browser',
-    fallback: <PageLoading />
+    fallback: <div>路由加载中....</div>
   },
-  request: {
-    baseURL: '',
-    interceptors: {
-      request: {
-        onConfig: config => {
-          return config;
-        },
-        onError: error => {
-          return Promise.reject(error);
-        }
-      },
-      response: {
-        onConfig: config => {
-          return config;
-        },
-        onError: error => {
-          return Promise.reject(error);
-        }
-      }
-    }
-  }
 };
 createApp(appConfig);
