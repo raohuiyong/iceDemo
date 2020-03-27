@@ -59,7 +59,7 @@ export default function BasicLayout({
       <Shell
         type="dark"
         style={{
-          height: '100vh',
+          minHeight: '100vh',
         }}
       >
         <Shell.Branding>

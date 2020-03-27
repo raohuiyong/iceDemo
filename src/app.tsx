@@ -12,9 +12,5 @@ const appConfig = {
       <LocaleProvider locale={locale}>{children}</LocaleProvider>
     ),
   },
-  router: {
-    type: 'browser',
-    fallback: <div>路由加载中....</div>
-  },
 };
 createApp(appConfig);
