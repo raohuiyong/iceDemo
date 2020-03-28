@@ -10,7 +10,11 @@ const appConfig = {
     rootId: 'ice-container',
     addProvider: ({ children }) => (
       <LocaleProvider locale={locale}>{children}</LocaleProvider>
-    ),
+    )
   },
+  router: {
+    type: 'browser',
+    fallback: <div>加载路由中...</div>
+  }
 };
 createApp(appConfig);
